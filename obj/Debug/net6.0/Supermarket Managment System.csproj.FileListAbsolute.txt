@@ -1,0 +1,87 @@
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\appsettings.Development.json
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\appsettings.json
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\Supermarket Managment System.staticwebassets.runtime.json
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\Supermarket Managment System.exe
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\Supermarket Managment System.deps.json
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\Supermarket Managment System.runtimeconfig.json
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\Supermarket Managment System.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\Supermarket Managment System.pdb
+E:\Work\Supermarket-Management-System\obj\Debug\net6.0\Supermarket Managment System.csproj.AssemblyReference.cache
+E:\Work\Supermarket-Management-System\obj\Debug\net6.0\Supermarket Managment System.GeneratedMSBuildEditorConfig.editorconfig
+E:\Work\Supermarket-Management-System\obj\Debug\net6.0\Supermarket Managment System.AssemblyInfoInputs.cache
+E:\Work\Supermarket-Management-System\obj\Debug\net6.0\Supermarket Managment System.AssemblyInfo.cs
+E:\Work\Supermarket-Management-System\obj\Debug\net6.0\Supermarket Managment System.csproj.CoreCompileInputs.cache
+E:\Work\Supermarket-Management-System\obj\Debug\net6.0\Supermarket Managment System.MvcApplicationPartsAssemblyInfo.cache
+E:\Work\Supermarket-Management-System\obj\Debug\net6.0\Supermarket Managment System.RazorAssemblyInfo.cache
+E:\Work\Supermarket-Management-System\obj\Debug\net6.0\Supermarket Managment System.RazorAssemblyInfo.cs
+E:\Work\Supermarket-Management-System\obj\Debug\net6.0\staticwebassets\msbuild.Supermarket Managment System.Microsoft.AspNetCore.StaticWebAssets.props
+E:\Work\Supermarket-Management-System\obj\Debug\net6.0\staticwebassets\msbuild.build.Supermarket Managment System.props
+E:\Work\Supermarket-Management-System\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.Supermarket Managment System.props
+E:\Work\Supermarket-Management-System\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.Supermarket Managment System.props
+E:\Work\Supermarket-Management-System\obj\Debug\net6.0\staticwebassets.pack.json
+E:\Work\Supermarket-Management-System\obj\Debug\net6.0\staticwebassets.build.json
+E:\Work\Supermarket-Management-System\obj\Debug\net6.0\staticwebassets.development.json
+E:\Work\Supermarket-Management-System\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+E:\Work\Supermarket-Management-System\obj\Debug\net6.0\scopedcss\bundle\Supermarket Managment System.styles.css
+E:\Work\Supermarket-Management-System\obj\Debug\net6.0\scopedcss\projectbundle\Supermarket Managment System.bundle.scp.css
+E:\Work\Supermarket-Management-System\obj\Debug\net6.0\Supermarket Managment System.dll
+E:\Work\Supermarket-Management-System\obj\Debug\net6.0\refint\Supermarket Managment System.dll
+E:\Work\Supermarket-Management-System\obj\Debug\net6.0\Supermarket Managment System.pdb
+E:\Work\Supermarket-Management-System\obj\Debug\net6.0\Supermarket Managment System.genruntimeconfig.cache
+E:\Work\Supermarket-Management-System\obj\Debug\net6.0\ref\Supermarket Managment System.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\Azure.Core.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\Azure.Identity.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\Humanizer.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\Microsoft.Extensions.Caching.Abstractions.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\Microsoft.Extensions.Logging.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\Microsoft.Identity.Client.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\Microsoft.Identity.Client.Extensions.Msal.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\Microsoft.SqlServer.Server.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\Mono.TextTemplating.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\System.CodeDom.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\System.Drawing.Common.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\System.Memory.Data.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\System.Runtime.Caching.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\System.Security.Permissions.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\System.Text.Encodings.Web.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\System.Text.Json.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\System.Windows.Extensions.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+E:\Work\Supermarket-Management-System\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+E:\Work\Supermarket-Management-System\obj\Debug\net6.0\Supermarket Managment System.csproj.CopyComplete

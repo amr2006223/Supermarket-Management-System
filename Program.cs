@@ -1,8 +1,11 @@
+using Microsoft.EntityFrameworkCore;
+using Supermarket_Managment_System.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddDbContext<db_context>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString") ?? throw new InvalidOperationException("Connection string 'dbContext' not found.")));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
