@@ -1,0 +1,43 @@
+@model IEnumerable<products>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Products List</h1>
+
+<div class="mb-3">
+    <a asp-controller="product" asp-action="Create" class="btn btn-primary">
+        <i class="bi bi-plus"></i> Add Product
+    </a>
+</div>
+
+<table class="table table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Product Name</th>
+            <th>Product Price (EGP)</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var obj in Model)
+        {
+            <tr>
+                <td>@obj.Id</td>
+                <td>@obj.Name</td>
+                <td>@obj.Price EGP</td>
+                <td>
+                    <div class="btn-group" role="group">
+                        <a asp-controller="product" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-secondary">
+                            <i class="bi bi-pencil-square"></i> Edit
+                        </a>
+                        <a asp-controller="product" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-danger">
+                            <i class="bi bi-trash-fill"></i> Delete
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

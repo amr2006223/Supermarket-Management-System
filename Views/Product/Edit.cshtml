@@ -1,0 +1,33 @@
+@model Supermarket_Managment_System.Models.products
+@{
+    ViewData["Title"] = "products";
+}
+
+<h1>Products</h1>
+
+<form method="post" asp-action="Edit">
+
+    <div class="border p-3 mt-4">
+
+        <div class="row pb-2">
+            <h2 class="text-primary">Edit product</h2>
+        </div>
+
+        <div class="mb-3">
+            <input asp-for="Name" class="form-control" placeholder="Product Name" required />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <div class="input-group">
+                <input asp-for="Price" class="form-control" placeholder="Product Price" type="number" step="0.01" min="0" required />
+                <span class="input-group-text">EGP</span>
+            </div>
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Update</button>
+            <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+        </div>
+    </div>
+</form>
