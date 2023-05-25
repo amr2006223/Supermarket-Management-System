@@ -1,0 +1,29 @@
+@model Supermarket_Managment_System.Models.products
+@{
+    ViewData["Title"] = "products";
+}
+
+<h1>Products</h1>
+
+<form method="post" asp-action="DeleteProduct">
+    <input asp-for="Id" hidden />
+    <div class="border p-3 mt-4">
+
+        <div class="row pb-2">
+            <h2 class="text-primary">Delete product</h2>
+        </div>
+
+        <div class="mb-3">
+            <input asp-for="Name" class="form-control" placeholder="Product Name" readonly />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <input asp-for="Price" class="form-control" placeholder="Product Price" readonly />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-danger">Delete</button>
+            <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+        </div>
+    </div>
+</form>
