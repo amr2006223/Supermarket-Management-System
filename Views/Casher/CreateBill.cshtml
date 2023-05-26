@@ -1,0 +1,155 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutCasher.cshtml";
+}
+@model (IEnumerable<products>, bills)
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="row">
+                @foreach (var product in Model.Item1)
+                {
+                    <div class="col-md-4 col-sm-6 mt-4">
+                        <div class="card border-secondary border-2">
+                            <div class="card-body">
+                                <h5 class="card-title">@product.Name</h5>
+                                <p class="card-text">@product.Price $</p>
+                                <div class="input-group mb-3">
+                                    <input type="number" id="quantity_@product.Id" class="form-control" value="1" min="1">
+                                    <button class="btn btn-primary" onclick="addToCart('@product.Id', '@Model.Item2.Id', $('#quantity_@product.Id').val())">Add to cart</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="col-md-4 mt-4">
+            <div class="border border-3 border-dark rounded">
+                <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white">
+                    <div class="d-flex align-items-center justify-content-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom border-dark">
+                        <span class="fs-5 fw-semibold text-center">Products in Bill</span>
+                    </div>
+                    <div class="list-group list-group-flush border-bottom border-dark scrollarea" id="productsInBill">
+                        <p class="text-center my-4">No products in the bill</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    function addToCart(product_id, bill_id, quantity) {
+        jQuery.ajax({
+            url: "@Url.Action("addProductToBill", "Casher")",
+            type: "POST",
+            data: {
+                "product_id": product_id,
+                "bill_id": bill_id,
+                "quantity": quantity
+            },
+            success: function (data) {
+                console.log(data);
+                if (data === "Product already exists in the bill.") {
+                    toastr.error('Product already exists in the bill');
+                } else {
+                    // Make AJAX GET request to retrieve updated products in the current bill
+                    getProductsInBill(bill_id);
+                }
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                console.log("Error:", textStatus, errorThrown);
+                toastr.error('Error', textStatus, errorThrown);
+            }
+        });
+    }
+
+
+    function getProductsInBill(bill_id) {
+        jQuery.ajax({
+            url: "@Url.Action("GetProductsInBill", "Casher")",
+            type: "GET",
+            data: {
+                "bill_id": bill_id
+            },
+            success: function (data) {
+                console.log(data); // Log the received data for debugging
+
+                // Update the products in the bill section of the view
+                var productsDiv = $("#productsInBill");
+                productsDiv.empty();
+
+                if (data && data.length > 0) {
+                    // Inside the success function of getProductsInBill(bill_id)
+                    data.forEach(function (product) {
+                        var productHtml = '<div class="list-group-item list-group-item-action border-bottom border-dark d-flex w-100 align-items-center justify-content-between">' +
+                            //'<div class="d-flex w-100 align-items-center justify-content-between">' +
+                            '<h5 class="mb-1">' + product.name + '</h5>' +
+                            '<small>' + product.price + ' EGP</small>' +
+                            '<div style="width: 30%;" class="input-group">' +
+                            '<input style="padding: 0px; padding-left: 5px;" type="number" class="form-control " id="editQuantity_' + product.id + '" value="' + product.quantity + '" min="1">' +
+                            '<button class="btn btn-primary" onclick="editProductQuantity(\'' + product.id + '\', \'' + bill_id + '\', $(\'#editQuantity_' + product.id + '\').val())">Save</button>' +
+                            '</div>' +
+                            '<button class="btn btn-danger btn-sm" onclick="deleteProductFromBill(\'' + product.id + '\', \'' + bill_id + '\')">Delete</button>' +
+                            //'</div>'+
+                            '</div>';
+                        productsDiv.append(productHtml);
+                    });
+
+                } else {
+                    productsDiv.html('<p class="text-center">No products in the bill</p>');
+                }
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                console.log("Error:", textStatus, errorThrown);
+                toastr.error('Error', textStatus, errorThrown);
+            }
+        });
+    }
+
+    function editProductQuantity(product_id, bill_id, quantity) {
+        jQuery.ajax({
+            url: "@Url.Action("EditProductQuantity", "Casher")",
+            type: "POST",
+            data: {
+                "product_id": product_id,
+                "bill_id": bill_id,
+                "quantity": quantity
+            },
+            success: function (data) {
+                console.log(data);
+                // Handle the response data
+                toastr.success('Quantity updated successfully');
+
+                // Make AJAX GET request to retrieve updated products in the current bill
+                getProductsInBill(bill_id);
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                console.log("Error:", textStatus, errorThrown);
+                toastr.error('Error', textStatus, errorThrown);
+            }
+        });
+    }
+
+    function deleteProductFromBill(product_id, bill_id) {
+        jQuery.ajax({
+            url: "@Url.Action("DeleteProductFromBill", "Casher")",
+            type: "POST",
+            data: {
+                "product_id": product_id,
+                "bill_id": bill_id
+            },
+            success: function (data) {
+                // Make AJAX GET request to retrieve updated products in the current bill
+                getProductsInBill(bill_id);
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                console.log("Error:", textStatus, errorThrown);
+                toastr.error('Error', textStatus, errorThrown);
+            }
+        });
+    }
+</script>
+
