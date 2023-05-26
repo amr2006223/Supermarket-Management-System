@@ -172,3 +172,90 @@ D:\MIU\Year 3\Term 2\Principles of Software Design\Supermarket-Management-System
 D:\MIU\Year 3\Term 2\Principles of Software Design\Supermarket-Management-System\obj\Debug\net6.0\Supermarket Managment System.csproj.CopyComplete
 D:\MIU\Year 3\Term 2\Principles of Software Design\Supermarket-Management-System\obj\Debug\net6.0\Supermarket Managment System.genruntimeconfig.cache
 D:\MIU\Year 3\Term 2\Principles of Software Design\Supermarket-Management-System\obj\Debug\net6.0\ref\Supermarket Managment System.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\appsettings.json
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\Supermarket Managment System.staticwebassets.runtime.json
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\Supermarket Managment System.exe
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\Supermarket Managment System.deps.json
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\Supermarket Managment System.runtimeconfig.json
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\Supermarket Managment System.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\Supermarket Managment System.pdb
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\Azure.Core.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\Azure.Identity.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\Humanizer.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\Microsoft.Extensions.Logging.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\Microsoft.Identity.Client.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\Microsoft.Identity.Client.Extensions.Msal.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\Microsoft.SqlServer.Server.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\Mono.TextTemplating.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\System.CodeDom.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\System.Drawing.Common.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\System.Memory.Data.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\System.Runtime.Caching.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\System.Security.Permissions.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\System.Text.Encodings.Web.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\System.Text.Json.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\System.Windows.Extensions.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\obj\Debug\net6.0\Supermarket Managment System.csproj.AssemblyReference.cache
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\obj\Debug\net6.0\Supermarket Managment System.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\obj\Debug\net6.0\Supermarket Managment System.AssemblyInfoInputs.cache
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\obj\Debug\net6.0\Supermarket Managment System.AssemblyInfo.cs
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\obj\Debug\net6.0\Supermarket Managment System.csproj.CoreCompileInputs.cache
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\obj\Debug\net6.0\Supermarket Managment System.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\obj\Debug\net6.0\Supermarket Managment System.RazorAssemblyInfo.cache
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\obj\Debug\net6.0\Supermarket Managment System.RazorAssemblyInfo.cs
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\obj\Debug\net6.0\staticwebassets\msbuild.Supermarket Managment System.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\obj\Debug\net6.0\staticwebassets\msbuild.build.Supermarket Managment System.props
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.Supermarket Managment System.props
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.Supermarket Managment System.props
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\obj\Debug\net6.0\staticwebassets.pack.json
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\obj\Debug\net6.0\scopedcss\bundle\Supermarket Managment System.styles.css
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\obj\Debug\net6.0\scopedcss\projectbundle\Supermarket Managment System.bundle.scp.css
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\obj\Debug\net6.0\Supermarket Managment System.csproj.CopyComplete
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\obj\Debug\net6.0\Supermarket Managment System.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\obj\Debug\net6.0\refint\Supermarket Managment System.dll
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\obj\Debug\net6.0\Supermarket Managment System.pdb
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\obj\Debug\net6.0\Supermarket Managment System.genruntimeconfig.cache
+C:\Users\kokoe\Source\Repos\amr2006223\Supermarket-Management-System\obj\Debug\net6.0\ref\Supermarket Managment System.dll

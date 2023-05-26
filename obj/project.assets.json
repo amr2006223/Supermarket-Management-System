@@ -3516,11 +3516,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\MIU\\Year 3\\Term 2\\Principles of Software Design\\Supermarket-Management-System\\Supermarket Managment System.csproj",
+      "projectUniqueName": "C:\\Users\\kokoe\\Source\\Repos\\amr2006223\\Supermarket-Management-System\\Supermarket Managment System.csproj",
       "projectName": "Supermarket Managment System",
-      "projectPath": "D:\\MIU\\Year 3\\Term 2\\Principles of Software Design\\Supermarket-Management-System\\Supermarket Managment System.csproj",
+      "projectPath": "C:\\Users\\kokoe\\Source\\Repos\\amr2006223\\Supermarket-Management-System\\Supermarket Managment System.csproj",
       "packagesPath": "C:\\Users\\kokoe\\.nuget\\packages\\",
-      "outputPath": "D:\\MIU\\Year 3\\Term 2\\Principles of Software Design\\Supermarket-Management-System\\obj\\",
+      "outputPath": "C:\\Users\\kokoe\\Source\\Repos\\amr2006223\\Supermarket-Management-System\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

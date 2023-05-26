@@ -52,7 +52,17 @@ namespace Supermarket_Managment_System.Controllers
             _db.bill_items_details.Add(bill_items_details);
             bills bills = _db.bill.Find(bill_id);
             products products = _db.product.Find(product_id);
-            bills.TotalPrice += products.Price * bill_items_details.Quantity;
+            var offer = _db.products_offers.FirstOrDefault(po => po.ProductId == product_id);
+            if (offer != null)
+            {
+                // Apply the offer
+                float offerPrice = products.Price * offer.Offer.Discount;
+                bills.TotalPrice += offerPrice * quantity;
+            }
+            else
+            {
+                bills.TotalPrice += products.Price * quantity;
+            }
             _db.SaveChanges();
             Console.WriteLine("Product added to bill");
 
@@ -97,5 +107,29 @@ namespace Supermarket_Managment_System.Controllers
                 return Json("Product not found in the bill.");
             }
         }
+
+        [HttpPost]
+        public IActionResult EditProductQuantity(Guid product_id, Guid bill_id, int quantity)
+        {
+            var billItem = _db.bill_items_details.FirstOrDefault(b => b.ProductId == product_id && b.BillId == bill_id);
+            if (billItem != null)
+            {
+                bills bills = _db.bill.Find(bill_id);
+                products products = _db.product.Find(product_id);
+
+                bills.TotalPrice -= products.Price * billItem.Quantity;
+                bills.TotalPrice += products.Price * quantity;
+
+                billItem.Quantity = quantity;
+                _db.SaveChanges();
+
+                return Json("Quantity updated successfully.");
+            }
+            else
+            {
+                return Json("Product not found in the bill.");
+            }
+        }
+
     }
 }

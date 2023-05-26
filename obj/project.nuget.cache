@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "znEz89ZNmnJYjzkuyHUGithomEsMVhv031TF6Bg1P9Ox4hXtO+SELPw0qoUmpo584A1wb1OznIUWOu43FG2Zhg==",
+  "dgSpecHash": "Q+Greb6waXfdPA9bb3Fc369WG4S8hxFjDOWZjouuxWrCCcncVX7mxUlOO53fepAL8YZiGsklLNNstO5UQl7XhQ==",
   "success": true,
-  "projectFilePath": "D:\\MIU\\Year 3\\Term 2\\Principles of Software Design\\Supermarket-Management-System\\Supermarket Managment System.csproj",
+  "projectFilePath": "C:\\Users\\kokoe\\Source\\Repos\\amr2006223\\Supermarket-Management-System\\Supermarket Managment System.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\kokoe\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\kokoe\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
