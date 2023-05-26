@@ -12,7 +12,7 @@ using Supermarket_Managment_System.Data;
 namespace Supermarket_Managment_System.Migrations
 {
     [DbContext(typeof(db_context))]
-    [Migration("20230526054137_init")]
+    [Migration("20230526124047_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -300,6 +300,9 @@ namespace Supermarket_Managment_System.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<float>("Discount")
+                        .HasColumnType("real");
 
                     b.Property<string>("Name")
                         .IsRequired()
