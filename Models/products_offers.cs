@@ -6,6 +6,7 @@ namespace Supermarket_Managment_System.Models
     public class products_offers
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
         public Guid ProductId { get; set; }
         public Guid OfferId { get; set; }
