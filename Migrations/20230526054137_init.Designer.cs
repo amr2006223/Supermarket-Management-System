@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Supermarket_Managment_System.Data;
 
@@ -11,9 +12,11 @@ using Supermarket_Managment_System.Data;
 namespace Supermarket_Managment_System.Migrations
 {
     [DbContext(typeof(db_context))]
-    partial class db_contextModelSnapshot : ModelSnapshot
+    [Migration("20230526054137_init")]
+    partial class init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
