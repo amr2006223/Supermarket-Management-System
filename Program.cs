@@ -9,6 +9,8 @@ using Supermarket_Managment_System.Services.AuthService;
 using Supermarket_Managment_System.Services.UserService;
 using Supermarket_Managment_System.Services.CasherService;
 using Supermarket_Managment_System.Repositories;
+using Microsoft.Extensions.Hosting;
+
 using Supermarket_Managment_System.Repositories.OffersRepositorie;
 using Supermarket_Managment_System.Services.OfferService;
 
@@ -42,6 +44,11 @@ builder.Services.Configure<IdentityOptions>(options =>
 builder.Services.AddSession();
 
 var app = builder.Build();
+using (var scope = app.Services.CreateScope())
+{
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+    await AppDbInitializer.SeedAsync(roleManager);
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
