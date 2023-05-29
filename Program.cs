@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Supermarket_Managment_System.Services.AuthService;
 using Supermarket_Managment_System.Services.UserService;
 using Supermarket_Managment_System.Services.CasherService;
+using Microsoft.Extensions.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,6 +37,11 @@ builder.Services.Configure<IdentityOptions>(options =>
 builder.Services.AddSession();
 
 var app = builder.Build();
+using (var scope = app.Services.CreateScope())
+{
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+    await AppDbInitializer.SeedAsync(roleManager);
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
