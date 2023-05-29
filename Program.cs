@@ -8,7 +8,9 @@ using Microsoft.AspNetCore.Identity;
 using Supermarket_Managment_System.Services.AuthService;
 using Supermarket_Managment_System.Services.UserService;
 using Supermarket_Managment_System.Services.CasherService;
+using Supermarket_Managment_System.Repositories;
 using Microsoft.Extensions.Hosting;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,7 +20,8 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddTransient<IAuthService, AuthService>();
 builder.Services.AddTransient<IUserService, UserService>();
-builder.Services.AddTransient<ICasherServices, CasherServices>();
+builder.Services.AddTransient<ICasherService, CasherService>();
+builder.Services.AddTransient<ICasherRepository, CasherRepository>();
 
 builder.Services.AddIdentity<users, IdentityRole>()
     .AddEntityFrameworkStores<db_context>();
