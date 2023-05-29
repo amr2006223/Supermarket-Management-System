@@ -2,19 +2,28 @@
 using Microsoft.EntityFrameworkCore;
 using Supermarket_Managment_System.Data;
 using Supermarket_Managment_System.Models;
-using Supermarket_Managment_System.Services;
+using Supermarket_Managment_System.ViewModels;
+using Supermarket_Managment_System.Services.CasherService;
 using System.Collections.Generic;
+using System.Collections;
+using System.Linq;
 
 namespace Supermarket_Managment_System.Controllers
 {
     public class CasherController : Controller
     {
         private readonly db_context _db;
-        //private readonly CasherServices _casherServices;
+        private ICasherServices _casherServices;
 
-        public CasherController(db_context db)
+        public CasherController(db_context db, ICasherServices casherServices)
         {
             _db = db;
+            _casherServices = casherServices;
+
+            //products_categories produc_categorie = new products_categories();
+            //produc_categorie.ProductId = new Guid("3a553de8-1169-4ec7-98dc-08db5d2d5e50");
+            //produc_categorie.CategoryId = new Guid("21b6c610-fb22-4389-e6aa-08db605584ac");
+            //_db.product_catoegories.Add(produc_categorie);
         }
 
         public IActionResult Index()
@@ -24,15 +33,48 @@ namespace Supermarket_Managment_System.Controllers
 
         public IActionResult CreateBill()
         {
-            IEnumerable<products> products = _db.product;
+            List<ProductsToBillVM> productsToBillVM = new List<ProductsToBillVM>();
+            //get all products
+            IEnumerable<products> products = _db.product.ToList();
+            //get all categories
+            IEnumerable<categories> categories = _db.category;
+            //get products categories
+            foreach (var product in products)
+            {
+                var productCategory = _db.product_catoegories
+                                         .Include(pc => pc.Category)
+                                         .FirstOrDefault(pc => pc.ProductId == product.Id);
+
+                if (productCategory != null)
+                {
+                    ProductsToBillVM productsToBill = new ProductsToBillVM()
+                    {
+                        product = product,
+                        category = productCategory.Category
+                    };
+                    productsToBillVM.Add(productsToBill);
+                }
+                else
+                {
+                    ProductsToBillVM productsToBill = new ProductsToBillVM()
+                    {
+                        product = product,
+                    };
+                    productsToBillVM.Add(productsToBill);
+                }
+            }
+            //create new bill
             bills bill = new bills();
-            bill.Id = new Guid();
-            //bill.UserId = new Guid("902B72D0-42B2-4CD5-970A-08DB5CD4D842");
-            bill.PaymentMethodId = new Guid("A7EE157E-AC7F-4F51-774A-08DB5CD6635E");
+
+            //set bill user id to the current user id
+            bill.UserId = "f2f3f1f3-f243-44d0-a2df-18ef6f558925";
+            //set bill payment method to first payment method
+            bill.PaymentMethodId = _db.payment.FirstOrDefault().Id;
+
             bill.TotalPrice = 0;
             _db.bill.Add(bill);
             _db.SaveChanges();
-            return View("CreateBill", (products, bill));
+            return View("CreateBill", (productsToBillVM, bill, categories));
         }
 
         [HttpPost]
@@ -50,24 +92,33 @@ namespace Supermarket_Managment_System.Controllers
             bill_items_details.ProductId = product_id;
             bill_items_details.Quantity = quantity;
             _db.bill_items_details.Add(bill_items_details);
-            bills bills = _db.bill.Find(bill_id);
-            products products = _db.product.Find(product_id);
-            var offer = _db.products_offers.FirstOrDefault(po => po.ProductId == product_id);
-            if (offer != null)
+
+            if (bill_id != null)
             {
-                // Apply the offer
-                float offerPrice = products.Price * offer.Offer.Discount;
-                bills.TotalPrice += offerPrice * quantity;
+                var bill = _db.bill.FirstOrDefault(b => b.Id == bill_id);
+                products products = _db.product.Find(product_id);
+                var offer = _db.products_offers.FirstOrDefault(po => po.ProductId == product_id);
+                if (offer != null)
+                {
+                    // Apply the offer
+                    float offerPrice = products.Price * offer.Offer.Discount;
+                    bill.TotalPrice += offerPrice * quantity;
+                }
+                else
+                {
+                    bill.TotalPrice += products.Price * quantity;
+                }
+                _db.SaveChanges();
+                Console.WriteLine("Product added to bill");
+
+                return Json("Product added to the bill successfully.");
             }
             else
             {
-                bills.TotalPrice += products.Price * quantity;
+                return Json("Bill ID is null.");
             }
-            _db.SaveChanges();
-            Console.WriteLine("Product added to bill");
-
-            return Json("Product added to the bill successfully.");
         }
+
 
 
         public IActionResult GetProductsInBill(Guid bill_id)
@@ -130,6 +181,5 @@ namespace Supermarket_Managment_System.Controllers
                 return Json("Product not found in the bill.");
             }
         }
-
     }
 }
