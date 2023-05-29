@@ -39,8 +39,9 @@ builder.Services.AddSession();
 var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
+    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<users>>();
     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-    await AppDbInitializer.SeedAsync(roleManager);
+    await AppDbInitializer.SeedAsync(roleManager, userManager);
 }
 
 // Configure the HTTP request pipeline.
