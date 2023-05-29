@@ -4,7 +4,6 @@
 @model (List<Supermarket_Managment_System.ViewModels.ProductsToBillVM>, Supermarket_Managment_System.Models.bills, IEnumerable<Supermarket_Managment_System.Models.categories>)
 
 <style>
-    /* CSS styles for product cards */
     .card {
         display: flex;
         flex-direction: column;
@@ -67,8 +66,11 @@
         <div class="col-md-4 mt-4">
             <div class="border border-3 border-dark rounded">
                 <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white">
-                    <div class="d-flex align-items-center justify-content-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom border-dark">
+                    <div class="d-flex align-items-center justify-content-between flex-shrink-0 p-3 link-dark text-decoration-none border-bottom border-dark">
                         <span class="fs-5 fw-semibold text-center">Products in Bill</span>
+                        <a asp-controller="Casher" asp-action="GetBill" asp-route-id="@Model.Item2.Id" class="btn btn-success fw-bold">
+                            <i class="bi bi-trash-fill"></i> Finish
+                        </a>
                     </div>
                     <div class="list-group list-group-flush border-bottom border-dark scrollarea" id="productsInBill">
                         <p class="text-center my-4">No products in the bill</p>
@@ -82,7 +84,7 @@
 @section Scripts {
     <script>
         $(document).ready(function () {
-            // Add event listeners for the search input and category filter
+            // event listeners for the search input and category filter
             $("#productNameFilter").on("input", function () {
                 var productName = $(this).val().toLowerCase();
                 var categoryId = $("#categoryFilter").val();
@@ -224,6 +226,10 @@
                 toastr.error('Error', textStatus, errorThrown);
             }
         });
+    }
+
+    function finishBull(){
+        alert("alo");
     }
     </script>
     }
