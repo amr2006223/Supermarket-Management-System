@@ -7,6 +7,7 @@ using Supermarket_Managment_System.Models;
 using Microsoft.AspNetCore.Identity;
 using Supermarket_Managment_System.Services.AuthService;
 using Supermarket_Managment_System.Services.UserService;
+using Supermarket_Managment_System.Services.CasherService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddTransient<IAuthService, AuthService>();
 builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddTransient<ICasherServices, CasherServices>();
 
 builder.Services.AddIdentity<users, IdentityRole>()
     .AddEntityFrameworkStores<db_context>();
