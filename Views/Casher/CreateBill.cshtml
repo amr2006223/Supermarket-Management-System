@@ -24,6 +24,12 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12 mb-4">
+            <label for="productNameFilter">Search by Product Name:</label>
+            <input type="text" id="productNameFilter" class="form-control">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 mb-4">
             <label for="categoryFilter">Filter by Category:</label>
             <select id="categoryFilter" class="form-select">
                 <option value="">All</option>
@@ -75,31 +81,39 @@
 
 @section Scripts {
     <script>
-    $(document).ready(function () {
-        $("#categoryFilter").change(function () {
-            var categoryId = $(this).val();
-            filterProducts(categoryId);
+        $(document).ready(function () {
+            // Add event listeners for the search input and category filter
+            $("#productNameFilter").on("input", function () {
+                var productName = $(this).val().toLowerCase();
+                var categoryId = $("#categoryFilter").val();
+                filterProducts(productName, categoryId);
+            });
+
+            $("#categoryFilter").change(function () {
+                var categoryId = $(this).val();
+                var productName = $("#productNameFilter").val().toLowerCase();
+                filterProducts(productName, categoryId);
+            });
         });
-    });
 
-        function filterProducts(categoryId) {
-            console.log(categoryId);
-            $("#productList .card").hide();
+        function filterProducts(productName, categoryId) {
+            $("#productList .col-md-4").hide();
 
-            if (categoryId === "") {
-                $("#productList .card").show();
-            } else {
-                $("#productList .card").each(function () {
-                    var category = $(this).find(".card-text.category").text().trim();
-                    console.log(category.toLowerCase());
-                    console.log(categoryId.toLowerCase());
-                    if (category.toLowerCase() == categoryId.toLowerCase()) {
-                        $(this).show();
-                    }
-                });
-            }
+            $("#productList .col-md-4").each(function () {
+                var name = $(this).find(".card-title").text().trim().toLowerCase();
+                var category = $(this).find(".card-text.category").text().trim().toLowerCase();
+
+                var nameMatch = name.includes(productName);
+                var categoryMatch = (categoryId === "" || category.toLowerCase() === categoryId.toLowerCase());
+
+                if (nameMatch && categoryMatch) {
+                    $(this).show();
+                }
+            });
+
+            // Scroll to the top of the filtered product list
+            $('html, body').animate({ scrollTop: $("#productList").offset().top }, 500);
         }
-
 
     function addToCart(product_id, bill_id, quantity) {
         jQuery.ajax({
