@@ -16,7 +16,6 @@ namespace Supermarket_Managment_System.Services.CasherService
         public IEnumerable<ProductsToBillVM> GetProductsWithCategories()
         {
             var products = _casherRepository.GetAllProducts();
-            var categories = _casherRepository.GetAllCategories();
 
             List<ProductsToBillVM> productsToBillVM = new List<ProductsToBillVM>();
 

@@ -60,5 +60,7 @@ namespace Supermarket_Managment_System.Controllers
             var result = _casherService.EditProductQuantity(product_id, bill_id, quantity);
             return Json(result);
         }
+
+
     }
 }

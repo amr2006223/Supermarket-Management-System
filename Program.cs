@@ -9,6 +9,8 @@ using Supermarket_Managment_System.Services.AuthService;
 using Supermarket_Managment_System.Services.UserService;
 using Supermarket_Managment_System.Services.CasherService;
 using Supermarket_Managment_System.Repositories;
+using Supermarket_Managment_System.Repositories.OffersRepositorie;
+using Supermarket_Managment_System.Services.OfferService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +22,8 @@ builder.Services.AddTransient<IAuthService, AuthService>();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<ICasherService, CasherService>();
 builder.Services.AddTransient<ICasherRepository, CasherRepository>();
+builder.Services.AddTransient<IOfferRepository, OfferRepository>();
+builder.Services.AddTransient<IOfferService, OfferService>();
 
 builder.Services.AddIdentity<users, IdentityRole>()
     .AddEntityFrameworkStores<db_context>();
