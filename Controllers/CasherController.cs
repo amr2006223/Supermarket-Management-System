@@ -11,7 +11,7 @@ namespace Supermarket_Managment_System.Controllers
     {
         private ICasherService _casherService;
 
-        public CasherController(db_context db, ICasherService casherServices)
+        public CasherController(ICasherService casherServices)
         {
             _casherService = casherServices;
         }
@@ -25,6 +25,7 @@ namespace Supermarket_Managment_System.Controllers
         {
             List<ProductsToBillVM> productsToBillVM = _casherService.GetProductsWithCategories().ToList();
             IEnumerable<categories> categories = _casherService.GetAllCategories();
+            IEnumerable<payments> payment_methods = _casherService.GetAllPaymentMethods();
             bills bill = new bills();
             bill.UserId = "f2f3f1f3-f243-44d0-a2df-18ef6f558925";
             bill.PaymentMethodId = _casherService.GetDefaultPaymentMethodId();
@@ -61,6 +62,18 @@ namespace Supermarket_Managment_System.Controllers
             return Json(result);
         }
 
+        public float GetBillTotalPrice(Guid bill_id)
+        {
+            var totalPrice = _casherService.GetBillTotalPrice(bill_id);
+            return totalPrice;
+        }
 
+        [HttpGet]
+        public IActionResult GetAllBillDetails(Guid bill_id)
+        {
+            var billvm = _casherService.GetBill(bill_id);
+            Console.WriteLine("test: " + billvm);
+            return View(billvm);
+        }
     }
 }

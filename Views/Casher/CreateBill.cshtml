@@ -68,12 +68,15 @@
                 <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white">
                     <div class="d-flex align-items-center justify-content-between flex-shrink-0 p-3 link-dark text-decoration-none border-bottom border-dark">
                         <span class="fs-5 fw-semibold text-center">Products in Bill</span>
-                        <a asp-controller="Casher" asp-action="GetBill" asp-route-id="@Model.Item2.Id" class="btn btn-success fw-bold">
+                        <a asp-controller="Casher" asp-action="GetAllBillDetails" asp-route-id="@Model.Item2.Id" class="btn btn-success fw-bold">
                             <i class="bi bi-trash-fill"></i> Finish
                         </a>
                     </div>
                     <div class="list-group list-group-flush border-bottom border-dark scrollarea" id="productsInBill">
                         <p class="text-center my-4">No products in the bill</p>
+                    </div>
+                    <div class="p-3">
+                        <span id = "totalPrice"class="fs-5 fw-semibold text-center">Total Price:  0 EGP</span>
                     </div>
                 </div>
             </div>
@@ -173,7 +176,7 @@
                             '</div>';
                         productsDiv.append(productHtml);
                     });
-
+                    getTotlaPrice(bill_id);
                 } else {
                     productsDiv.html('<p class="text-center">No products in the bill</p>');
                 }
@@ -184,6 +187,24 @@
             }
         });
     }
+
+        function getTotlaPrice(bill_id){
+            jQuery.ajax({
+                url: "@Url.Action("GetBillTotalPrice", "Casher")",
+                type: "GET",
+                data: {
+                    "bill_id": bill_id
+                },
+                success: function (data) {
+                    console.log(data);
+                    $("#totalPrice").text("Total Price: " + data + " EGP");
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log("Error:", textStatus, errorThrown);
+                    toastr.error('Error', textStatus, errorThrown);
+                }
+            });
+        }
 
     function editProductQuantity(product_id, bill_id, quantity) {
         jQuery.ajax({

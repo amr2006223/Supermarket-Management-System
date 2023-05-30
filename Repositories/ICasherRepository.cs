@@ -18,6 +18,11 @@ namespace Supermarket_Managment_System.Repositories
         void AddProductToBill(bill_items_details billItem);
         void RemoveProductFromBill(bill_items_details billItem);
         IEnumerable<bill_items_details> GetProductsInBill(Guid billId);
+        float GetTotalPrice(Guid billId);
+        IEnumerable<payments> GetAllPaymentMethods();
+        IQueryable<bill_items_details> GetBillItemDetailsByBillId(Guid billId);
+        bool HasOfferForProduct(Guid productId);
+        float GetDiscountForProduct(Guid productId);
         void SaveChanges();
     }
 }

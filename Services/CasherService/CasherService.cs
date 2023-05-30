@@ -162,5 +162,43 @@ namespace Supermarket_Managment_System.Services.CasherService
         {
             return _casherRepository.GetAllCategories();
         }
+
+        public float GetBillTotalPrice(Guid billId)
+        {
+            return _casherRepository.GetTotalPrice(billId);
+        }
+
+        public IEnumerable<payments> GetAllPaymentMethods()
+        {
+            return _casherRepository.GetAllPaymentMethods();
+        }
+
+        public billVM GetBill(Guid billId)
+        {
+            var bill = _casherRepository.GetBill(billId);
+
+            if (bill == null)
+                return null;
+
+            var productsInBill = _casherRepository.GetBillItemDetailsByBillId(billId)
+                .Select(bid => new ProductViewModel
+                {
+                    ProductId = bid.ProductId,
+                    ProductName = bid.Product.Name,
+                    Quantity = bid.Quantity,
+                    Price = bid.Product.Price,
+                    HasOffer = _casherRepository.HasOfferForProduct(bid.ProductId),
+                    Discount = _casherRepository.GetDiscountForProduct(bid.ProductId)
+                })
+                .ToList();
+            var totalBillPrice = productsInBill.Sum(p => p.Price * p.Quantity);
+            var billViewModel = new billVM
+            {
+                BillId = bill.Id,
+                Products = productsInBill,
+                TotalPrice = totalBillPrice
+            };
+            return billViewModel;
+        }
     }
 }
