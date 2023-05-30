@@ -15,11 +15,14 @@ namespace Supermarket_Managment_System.Services.CasherService
 
 
 
-        public CasherService(ICasherRepository casherRepository, IBillRepository billRepository)
+        public CasherService(ICasherRepository casherRepository, IBillRepository billRepository, IProductsRepository productRepository, ICategoriesRepository categoriesRepository)
         {
             _casherRepository = casherRepository;
             _billRepository = billRepository;
-        }
+            _productRepository = productRepository;
+            _categoriesRepository = categoriesRepository;
+
+    }
 
         public IEnumerable<ProductsToBillVM> GetProductsWithCategories()
         {

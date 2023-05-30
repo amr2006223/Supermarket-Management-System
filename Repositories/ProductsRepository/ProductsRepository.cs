@@ -11,7 +11,7 @@ namespace Supermarket_Managment_System.Data
         {
             _dbContext = dbContext;
         }
-        public IEnumerable<products> GetProducts()
+        public List<products> GetProducts()
         {
             return _dbContext.product.ToList();
         }
