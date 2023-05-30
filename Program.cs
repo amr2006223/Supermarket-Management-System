@@ -10,12 +10,18 @@ using Supermarket_Managment_System.Services.AuthService;
 using Supermarket_Managment_System.Services.UserService;
 using Supermarket_Managment_System.Services.CasherService;
 using Supermarket_Managment_System.Repositories;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddDbContext<db_context>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString") ?? throw new InvalidOperationException("Connection string 'dbContext' not found.")));
 builder.Services.AddControllersWithViews();
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddDbContext<db_context>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString") ?? throw new InvalidOperationException("Connection string 'dbContext' not found.")));
 
 builder.Services.AddTransient<IAuthService, AuthService>();
 builder.Services.AddTransient<IUserService, UserService>();
@@ -32,6 +38,24 @@ builder.Services.AddTransient<ICasherRepository, CasherRepository>();
 builder.Services.AddIdentity<users, IdentityRole>()
     .AddEntityFrameworkStores<db_context>();
 
+builder.Services.AddMvc(options =>
+{
+    options.EnableEndpointRouting = false;
+    var policy = new AuthorizationPolicyBuilder()
+                    .RequireAuthenticatedUser()
+                    .Build();
+    options.Filters.Add(new AuthorizeFilter(policy));
+}).AddXmlDataContractSerializerFormatters();
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    //Location for your Custom Access Denied Page
+    options.AccessDeniedPath = "/auth/AccessDenied";
+    options.LogoutPath = "/auth/login";
+
+    //Location for your Custom Login Page
+    options.LoginPath = "/auth/login";
+});
+
 builder.Services.Configure<IdentityOptions>(options =>
 {
     options.Password.RequiredLength = 8;
@@ -39,13 +63,16 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.Password.RequireNonAlphanumeric = false;
 
 });
-
-
-//builder.Services.AddIdentity<users, IdentityRole>().AddEntityFrameworkStores<db_context>();
-
 builder.Services.AddSession();
 
+
 var app = builder.Build();
+using (var scope = app.Services.CreateScope())
+{
+    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<users>>();
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+    await AppDbInitializer.SeedAsync(roleManager, userManager);
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -59,11 +86,12 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseAuthentication();
 app.UseRouting();
+app.UseMvc();
 app.UseAuthorization();
 app.UseSession();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Casher}/{action=Index}/{id?}");
+    pattern: "{controller=auth}/{action=login}/{id?}");
 
 app.Run();
