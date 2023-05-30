@@ -22,6 +22,7 @@ namespace Supermarket_Managment_System.Controllers
             }
             return View(dict);
         }
+        [HttpGet("/show2")]
         public IActionResult ProductBillReport()
         {
             Dictionary<string, float> dict = new Dictionary<string, float>();
