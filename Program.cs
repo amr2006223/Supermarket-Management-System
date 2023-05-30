@@ -12,6 +12,8 @@ using Supermarket_Managment_System.Repositories;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 
+using Supermarket_Managment_System.Repositories.OffersRepositorie;
+using Supermarket_Managment_System.Services.OfferService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +28,8 @@ builder.Services.AddTransient<IAuthService, AuthService>();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<ICasherService, CasherService>();
 builder.Services.AddTransient<ICasherRepository, CasherRepository>();
+builder.Services.AddTransient<IOfferRepository, OfferRepository>();
+builder.Services.AddTransient<IOfferService, OfferService>();
 
 builder.Services.AddIdentity<users, IdentityRole>()
     .AddEntityFrameworkStores<db_context>();

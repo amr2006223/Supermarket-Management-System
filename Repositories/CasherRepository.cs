@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Supermarket_Managment_System.Data;
 using Supermarket_Managment_System.Models;
+using System;
 
 namespace Supermarket_Managment_System.Repositories
 {
@@ -78,6 +79,41 @@ namespace Supermarket_Managment_System.Repositories
                 .Where(b => b.BillId == billId)
                 .Include(b => b.Product)
                 .ToList();
+        }
+
+        public float GetTotalPrice(Guid billId)
+        {
+            float totalPrice = _db.bill.Find(billId).TotalPrice;
+            return totalPrice;
+        }
+
+        public IEnumerable<payments> GetAllPaymentMethods()
+        {
+            return _db.payment.ToList();
+        }
+
+        public IQueryable<bill_items_details> GetBillItemDetailsByBillId(Guid billId)
+        {
+
+            return _db.bill_items_details.Where(bid => bid.BillId == billId);
+        }
+
+        public bool HasOfferForProduct(Guid productId)
+        {
+            return _db.products_offers.Any(po => po.ProductId == productId);
+        }
+
+        public float GetDiscountForProduct(Guid productId)
+        {
+            var productOffer = _db.products_offers.FirstOrDefault(po => po.ProductId == productId);
+            if (productOffer != null)
+            {
+                var offer = _db.offers.FirstOrDefault(o => o.Id == productOffer.OfferId);
+
+                return offer.Discount;
+            }
+            return 0;
+
         }
 
         public void SaveChanges()

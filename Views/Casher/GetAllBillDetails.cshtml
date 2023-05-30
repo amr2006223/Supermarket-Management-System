@@ -1,0 +1,41 @@
+﻿@model Supermarket_Managment_System.ViewModels.billVM
+
+@{
+    Layout = "~/Views/Shared/_LayoutCasher.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Bill Details</h2>
+            <hr />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h4>Bill ID: @Model.BillId</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Offer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Products)
+                    {
+                        <tr>
+                            <td>@item.ProductName</td>
+                            <td>@item.Quantity</td>
+                            <td>@item.Price</td>
+                            <td>@(item.HasOffer ? "Yes" : "No")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <h4>Total Price: @Model.TotalPrice EGP</h4>
+        </div>
+    </div>
+</div>
