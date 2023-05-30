@@ -2,7 +2,6 @@
 using Supermarket_Managment_System.Data;
 using Supermarket_Managment_System.Models;
 namespace Supermarket_Managment_System.Repositories
-
 {
     public class CasherRepository : ICasherRepository
     {
