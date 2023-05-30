@@ -19,5 +19,6 @@ namespace Supermarket_Managment_System.ViewModels
         [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage = "Password and confirmation password do not match")]
         public string ConfirmPassword { get; set; }
+       // public string Role { get; set; }
     }
 }

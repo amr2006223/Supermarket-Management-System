@@ -77,7 +77,7 @@ namespace Supermarket_Managment_System.Services.CasherService
 
             _casherRepository.AddProductToBill(billItem);
 
-            if (billId != null)
+            if (bill != null)
             {
                 if (offer != null)
                 {

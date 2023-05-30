@@ -45,7 +45,7 @@ namespace Supermarket_Managment_System.Services.AuthService
         }
         private async Task<bool> assignRole(users user, string Role)
         {
-            //var role = await _UserManager.AddToRoleAsync(user, Role);
+           // var role = await _UserManager.AddToRoleAsync(user, Role);
             //return role.Succeeded;
             return true;
         }
