@@ -1,0 +1,235 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutCasher.cshtml";
+}
+@model (List<Supermarket_Managment_System.ViewModels.ProductsToBillVM>, Supermarket_Managment_System.Models.bills, IEnumerable<Supermarket_Managment_System.Models.categories>)
+
+<style>
+    .card {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        padding: 20px;
+    }
+
+    .card-body {
+        flex-grow: 1;
+    }
+
+    .input-group {
+        /*margin-top: auto;*/
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 mb-4">
+            <label for="productNameFilter">Search by Product Name:</label>
+            <input type="text" id="productNameFilter" class="form-control">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 mb-4">
+            <label for="categoryFilter">Filter by Category:</label>
+            <select id="categoryFilter" class="form-select">
+                <option value="">All</option>
+                @foreach (var category in Model.Item3)
+                {
+                    <option value="@category.Name">@category.Name</option>
+                }
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="row" id="productList">
+                @foreach (var product in Model.Item1)
+                {
+                    <div class="col-md-4 col-sm-6 mt-4">
+                        <div class="card border-secondary border-2">
+                            <div class="card-body">
+                                <h5 class="card-title">@product.product.Name</h5>
+                                <p class="card-text">@product.product.Price $</p>
+                                @if (product.category != null)
+                                {
+                                    <p class="card-text category">@product.category.Name</p>
+                                }
+                            </div>
+                            <div class="input-group mb-3">
+                                <input type="number" id="quantity_@product.product.Id" class="form-control" value="1" min="1">
+                                <button class="btn btn-primary" onclick="addToCart('@product.product.Id', '@Model.Item2.Id', $('#quantity_@product.product.Id').val())">Add to cart</button>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="col-md-4 mt-4">
+            <div class="border border-3 border-dark rounded">
+                <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white">
+                    <div class="d-flex align-items-center justify-content-between flex-shrink-0 p-3 link-dark text-decoration-none border-bottom border-dark">
+                        <span class="fs-5 fw-semibold text-center">Products in Bill</span>
+                        <a asp-controller="Casher" asp-action="GetBill" asp-route-id="@Model.Item2.Id" class="btn btn-success fw-bold">
+                            <i class="bi bi-trash-fill"></i> Finish
+                        </a>
+                    </div>
+                    <div class="list-group list-group-flush border-bottom border-dark scrollarea" id="productsInBill">
+                        <p class="text-center my-4">No products in the bill</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // event listeners for the search input and category filter
+            $("#productNameFilter").on("input", function () {
+                var productName = $(this).val().toLowerCase();
+                var categoryId = $("#categoryFilter").val();
+                filterProducts(productName, categoryId);
+            });
+
+            $("#categoryFilter").change(function () {
+                var categoryId = $(this).val();
+                var productName = $("#productNameFilter").val().toLowerCase();
+                filterProducts(productName, categoryId);
+            });
+        });
+
+        function filterProducts(productName, categoryId) {
+            $("#productList .col-md-4").hide();
+
+            $("#productList .col-md-4").each(function () {
+                var name = $(this).find(".card-title").text().trim().toLowerCase();
+                var category = $(this).find(".card-text.category").text().trim().toLowerCase();
+
+                var nameMatch = name.includes(productName);
+                var categoryMatch = (categoryId === "" || category.toLowerCase() === categoryId.toLowerCase());
+
+                if (nameMatch && categoryMatch) {
+                    $(this).show();
+                }
+            });
+
+            // Scroll to the top of the filtered product list
+            $('html, body').animate({ scrollTop: $("#productList").offset().top }, 500);
+        }
+
+    function addToCart(product_id, bill_id, quantity) {
+        jQuery.ajax({
+            url: "@Url.Action("addProductToBill", "Casher")",
+            type: "POST",
+            data: {
+                "product_id": product_id,
+                "bill_id": bill_id,
+                "quantity": quantity
+            },
+            success: function (data) {
+                console.log(data);
+                if (data === "Product already exists in the bill.") {
+                    toastr.error('Product already exists in the bill');
+                } else {
+                    // Make AJAX GET request to retrieve updated products in the current bill
+                    getProductsInBill(bill_id);
+                }
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                console.log("Error:", textStatus, errorThrown);
+                toastr.error('Error', textStatus, errorThrown);
+            }
+        });
+    }
+
+
+    function getProductsInBill(bill_id) {
+        jQuery.ajax({
+            url: "@Url.Action("GetProductsInBill", "Casher")",
+            type: "GET",
+            data: {
+                "bill_id": bill_id
+            },
+            success: function (data) {
+                console.log(data); // Log the received data for debugging
+
+                // Update the products in the bill section of the view
+                var productsDiv = $("#productsInBill");
+                productsDiv.empty();
+
+                if (data && data.length > 0) {
+                    // Inside the success function of getProductsInBill(bill_id)
+                    data.forEach(function (product) {
+                        var productHtml = '<div class="list-group-item list-group-item-action border-bottom border-dark d-flex w-100 align-items-center justify-content-between">' +
+                            //'<div class="d-flex w-100 align-items-center justify-content-between">' +
+                            '<h5 class="mb-1">' + product.name + '</h5>' +
+                            '<small>' + product.price + ' EGP</small>' +
+                            '<div style="width: 30%;" class="input-group">' +
+                            '<input style="padding: 0px; padding-left: 5px;" type="number" class="form-control " id="editQuantity_' + product.id + '" value="' + product.quantity + '" min="1">' +
+                            '<button class="btn btn-primary" onclick="editProductQuantity(\'' + product.id + '\', \'' + bill_id + '\', $(\'#editQuantity_' + product.id + '\').val())">Save</button>' +
+                            '</div>' +
+                            '<button class="btn btn-danger btn-sm" onclick="deleteProductFromBill(\'' + product.id + '\', \'' + bill_id + '\')">Delete</button>' +
+                            //'</div>'+
+                            '</div>';
+                        productsDiv.append(productHtml);
+                    });
+
+                } else {
+                    productsDiv.html('<p class="text-center">No products in the bill</p>');
+                }
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                console.log("Error:", textStatus, errorThrown);
+                toastr.error('Error', textStatus, errorThrown);
+            }
+        });
+    }
+
+    function editProductQuantity(product_id, bill_id, quantity) {
+        jQuery.ajax({
+            url: "@Url.Action("EditProductQuantity", "Casher")",
+            type: "POST",
+            data: {
+                "product_id": product_id,
+                "bill_id": bill_id,
+                "quantity": quantity
+            },
+            success: function (data) {
+                console.log(data);
+                // Handle the response data
+                toastr.success('Quantity updated successfully');
+
+                // Make AJAX GET request to retrieve updated products in the current bill
+                getProductsInBill(bill_id);
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                console.log("Error:", textStatus, errorThrown);
+                toastr.error('Error', textStatus, errorThrown);
+            }
+        });
+    }
+
+    function deleteProductFromBill(product_id, bill_id) {
+        jQuery.ajax({
+            url: "@Url.Action("DeleteProductFromBill", "Casher")",
+            type: "POST",
+            data: {
+                "product_id": product_id,
+                "bill_id": bill_id
+            },
+            success: function (data) {
+                // Make AJAX GET request to retrieve updated products in the current bill
+                getProductsInBill(bill_id);
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                console.log("Error:", textStatus, errorThrown);
+                toastr.error('Error', textStatus, errorThrown);
+            }
+        });
+    }
+
+    function finishBull(){
+        alert("alo");
+    }
+    </script>
+    }

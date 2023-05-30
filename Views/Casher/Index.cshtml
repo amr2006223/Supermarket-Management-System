@@ -1,0 +1,85 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutCasher.cshtml";
+}
+
+@{
+    ViewData["Title"] = "Cashier Home";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 800px;
+            margin-top: 3rem;
+        }
+
+        .card {
+            border: none;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .card .card-body {
+            text-align: center;
+        }
+
+        .card .card-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .card .icon {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            color: #6c757d;
+        }
+
+        .card .btn {
+            width: 100%;
+            margin-top: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <i class="fas fa-shopping-cart icon"></i>
+                        <h5 class="card-title">Create Bill</h5>
+                        <a href="https://localhost:7209/Casher/CreateBill" class="btn btn-primary">Start</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <i class="fas fa-list-alt icon"></i>
+                        <h5 class="card-title">Manage Bills</h5>
+                        <a href="https://localhost:7209/Casher/BillsList" class="btn btn-primary">View Bills</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

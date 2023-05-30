@@ -1,10 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Supermarket_Managment_System.Models;
 using System.Collections.Generic;
 
 namespace Supermarket_Managment_System.Data
 {
-    public class db_context:DbContext
+    public class db_context: IdentityDbContext
     {
         public db_context(DbContextOptions<db_context> options) : base(options)
         {
