@@ -8,10 +8,10 @@ namespace Supermarket_Managment_System.Services.CasherService
         IEnumerable<ProductsToBillVM> GetProductsWithCategories();
         Guid GetDefaultPaymentMethodId();
         void CreateBill(bills bill);
-        string AddProductToBill(Guid productId, Guid billId, int quantity);
+        Task<string> AddProductToBill(Guid productId, Guid billId, int quantity);
         IEnumerable<object> GetProductsInBill(Guid billId);
-        string DeleteProductFromBill(Guid productId, Guid billId);
-        string EditProductQuantity(Guid productId, Guid billId, int quantity);
+        Task<string> DeleteProductFromBill(Guid productId, Guid billId);
+        Task<string>EditProductQuantity(Guid productId, Guid billId, int quantity);
         IEnumerable<categories> GetAllCategories();
         IEnumerable<bills> GetBillsList();
         void DeleteBill(Guid id);

@@ -1,58 +1,18 @@
 ﻿using Supermarket_Managment_System.Data;
 using Supermarket_Managment_System.Models;
-using Supermarket_Managment_System.Repositories;
 using Supermarket_Managment_System.Repositories.BillRepository;
-using Supermarket_Managment_System.ViewModels;
 
-namespace Supermarket_Managment_System.Services.CasherService
+namespace Supermarket_Managment_System.Services.BillService
 {
-    public class CasherService : ICasherService
+    public class BillService
     {
-        private readonly ICasherRepository _casherRepository;
-        private readonly ICategoriesRepository _categoriesRepository;
-        private readonly IProductsRepository _productRepository;
-        private readonly IBillRepository _billRepository;
-
-
-
-        public CasherService(ICasherRepository casherRepository, IBillRepository billRepository)
+        private readonly BillRepository _billRepository;
+        private readonly ProductsRepository _productsRepository;
+        public BillService(BillRepository billRepository, ProductsRepository productsRepository)
         {
-            _casherRepository = casherRepository;
-            _billRepository = billRepository;
+            _billRepository= billRepository;
+            _productsRepository = productsRepository;
         }
-
-        public IEnumerable<ProductsToBillVM> GetProductsWithCategories()
-        {
-            var products = _productRepository.GetProducts();
-            var categories = _categoriesRepository.GetCategories();
-
-            List<ProductsToBillVM> productsToBillVM = new List<ProductsToBillVM>();
-
-            foreach (var product in products)
-            {
-                var productCategory = _productRepository.GetProductCategory(product.Id);
-
-                if (productCategory != null)
-                {
-                    ProductsToBillVM productsToBill = new ProductsToBillVM()
-                    {
-                        product = product,
-                        category = productCategory.Category
-                    };
-                    productsToBillVM.Add(productsToBill);
-                }
-                else
-                {
-                    ProductsToBillVM productsToBill = new ProductsToBillVM()
-                    {
-                        product = product,
-                    };
-                    productsToBillVM.Add(productsToBill);
-                }
-            }
-            return productsToBillVM;
-        }
-
         public Guid GetDefaultPaymentMethodId()
         {
             return _billRepository.GetDefaultPaymentMethodId();
@@ -72,8 +32,8 @@ namespace Supermarket_Managment_System.Services.CasherService
             }
 
             var bill = _billRepository.getBillById(billId);
-            var product = await _productRepository.GetProductById(productId);
-            var offer = _productRepository.GetProductOffer(productId);
+            var product = await _productsRepository.GetProductById(productId);
+            var offer = _productsRepository.GetProductOffer(productId);
 
             bill_items_details billItem = new bill_items_details
             {
@@ -89,6 +49,7 @@ namespace Supermarket_Managment_System.Services.CasherService
             {
                 if (offer != null)
                 {
+
                     float offerPrice = product.Price * offer.Offer.Discount;
                     bill.TotalPrice += offerPrice * quantity;
                 }
@@ -97,7 +58,7 @@ namespace Supermarket_Managment_System.Services.CasherService
                     bill.TotalPrice += product.Price * quantity;
                 }
 
-                _casherRepository.SaveChanges();
+                _billRepository.SaveChanges();
 
                 return "Product added to the bill successfully.";
             }
@@ -109,7 +70,7 @@ namespace Supermarket_Managment_System.Services.CasherService
 
         public IEnumerable<object> GetProductsInBill(Guid billId)
         {
-            var productsInBill = _productRepository.GetProductsInBill(billId);
+            var productsInBill = _productsRepository.GetProductsInBill(billId);
             var productsWithQuantity = productsInBill.Select(b => new
             {
                 id = b.Product.Id,
@@ -129,11 +90,11 @@ namespace Supermarket_Managment_System.Services.CasherService
                 _billRepository.RemoveProductFromBill(billItem);
 
                 var bill = _billRepository.getBillById(billId);
-                var product = await _productRepository.GetProductById(productId);
+                var product = await _productsRepository.GetProductById(productId);
 
                 bill.TotalPrice -= product.Price * billItem.Quantity;
 
-                _casherRepository.SaveChanges();
+                _billRepository.SaveChanges();
 
                 return "Product removed from the bill successfully.";
             }
@@ -149,14 +110,14 @@ namespace Supermarket_Managment_System.Services.CasherService
             if (billItem != null)
             {
                 var bill = _billRepository.getBillById(billId);
-                var product = await _productRepository.GetProductById(productId);
+                var product = await _productsRepository.GetProductById(productId);
 
                 bill.TotalPrice -= product.Price * billItem.Quantity;
                 bill.TotalPrice += product.Price * quantity;
 
                 billItem.Quantity = quantity;
 
-                _casherRepository.SaveChanges();
+                _billRepository.SaveChanges();
 
                 return "Quantity updated successfully.";
             }
@@ -165,12 +126,6 @@ namespace Supermarket_Managment_System.Services.CasherService
                 return "Product not found in the bill.";
             }
         }
-
-        public IEnumerable<categories> GetAllCategories()
-        {
-            return _categoriesRepository.GetCategories();
-        }
-
         public IEnumerable<bills> GetBillsList()
         {
             return _billRepository.GetBillsList();
@@ -182,8 +137,11 @@ namespace Supermarket_Managment_System.Services.CasherService
             {
                 throw new Exception.NotFoundException("Bill not found");
             }
+            else {
+                _billRepository.deleteBill(id); 
 
-            _billRepository.deleteBill(id);
+            }
+            
         }
         public IEnumerable<bill_items_details> GetBillItems(Guid billId)
         {

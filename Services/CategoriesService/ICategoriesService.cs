@@ -7,7 +7,6 @@ namespace Supermarket_Managment_System.Services
     {
          IEnumerable<categories> GetCategories();
          bool AddCategory(categories category);
-
-         
+         IEnumerable<ProductsToBillVM> GetProductsWithCategories();
     }
 }
