@@ -9,10 +9,9 @@ using Supermarket_Managment_System.Services;
 using Supermarket_Managment_System.Services.AuthService;
 using Supermarket_Managment_System.Services.UserService;
 using Supermarket_Managment_System.Services.CasherService;
-using Supermarket_Managment_System.Repositories;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
-
+using Supermarket_Managment_System.Repositories.CasherRepository;
 
 var builder = WebApplication.CreateBuilder(args);
 

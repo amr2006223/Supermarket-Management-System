@@ -3,6 +3,7 @@ using Supermarket_Managment_System.Data;
 using Supermarket_Managment_System.Models;
 
 namespace Supermarket_Managment_System.Repositories
+namespace Supermarket_Managment_System.Repositories.CasherRepository
 {
     public class CasherRepository : ICasherRepository
     {
@@ -25,15 +26,18 @@ namespace Supermarket_Managment_System.Repositories
 
         public products_categories GetProductCategory(Guid productId)
         {
+
             return _db.product_catoegories
                 .Include(pc => pc.Category)
                 .FirstOrDefault(pc => pc.ProductId == productId);
+
         }
 
         public Guid GetDefaultPaymentMethodId()
         {
             return _db.payment.FirstOrDefault().Id;
         }
+
 
         public void CreateBill(bills bill)
         {
@@ -46,6 +50,7 @@ namespace Supermarket_Managment_System.Repositories
             return _db.bill_items_details
                 .FirstOrDefault(b => b.ProductId == productId && b.BillId == billId);
         }
+
 
         public bills GetBill(Guid billId)
         {
@@ -84,6 +89,7 @@ namespace Supermarket_Managment_System.Repositories
         {
             _db.SaveChanges();
         }
+
 
         public IEnumerable<bills> GetBillsList()
         {
@@ -166,5 +172,6 @@ namespace Supermarket_Managment_System.Repositories
             _db.SaveChanges();
             return true;
         }
+
     }
 }

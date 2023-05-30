@@ -2,7 +2,11 @@
 using System;
 using System.Collections.Generic;
 
+
 namespace Supermarket_Managment_System.Repositories
+
+
+
 {
     public interface ICasherRepository
     {
@@ -27,5 +31,6 @@ namespace Supermarket_Managment_System.Repositories
         bool DeleteItem(Guid id);
     }
 }
+
 
 
