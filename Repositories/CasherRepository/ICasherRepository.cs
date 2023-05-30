@@ -19,5 +19,13 @@ namespace Supermarket_Managment_System.Repositories
         void RemoveProductFromBill(bill_items_details billItem);
         IEnumerable<bill_items_details> GetProductsInBill(Guid billId);
         void SaveChanges();
+        IEnumerable<bills> GetBillsList();
+        bills GetBillById(Guid id);
+        void DeleteBill(bills bill);
+        IEnumerable<bill_items_details> GetBillItems(Guid billId);
+        bool UpdateQuantity(Guid billItemId, int quantity);
+        bool DeleteItem(Guid id);
     }
 }
+
+

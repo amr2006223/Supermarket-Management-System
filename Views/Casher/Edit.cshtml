@@ -1,0 +1,24 @@
+@model Supermarket_Managment_System.Models.bills
+
+<h2>Edit Bill</h2>
+
+<form asp-action="Edit">
+    <input type="hidden" asp-for="Id" />
+
+    <div>
+        <label asp-for="User.UserName">User Name:</label>
+        <input asp-for="User.UserName" />
+    </div>
+
+    <div>
+        <label asp-for="Payment.MethodName">Payment Method:</label>
+        <select asp-for="Payment.MethodName" asp-items="@(new SelectList(ViewBag.PaymentMethods))"></select>
+    </div>
+
+    <div>
+        <label asp-for="TotalPrice">Total Price:</label>
+        <input asp-for="TotalPrice" />
+    </div>
+
+    <input type="submit" value="Save" />
+</form>

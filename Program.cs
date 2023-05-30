@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using Supermarket_Managment_System.Data;
 using Supermarket_Managment_System.Models;
 using Microsoft.AspNetCore.Identity;
+using Supermarket_Managment_System.Services;
 using Supermarket_Managment_System.Services.AuthService;
 using Supermarket_Managment_System.Services.UserService;
 using Supermarket_Managment_System.Services.CasherService;
@@ -19,7 +20,14 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<IAuthService, AuthService>();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<ICasherService, CasherService>();
+builder.Services.AddTransient<IProductsService, ProductsService>();
+builder.Services.AddTransient<ICategoriesService, CategoriesService>();
+
+builder.Services.AddTransient<IProductsRepository, ProductsRepository>();
+builder.Services.AddTransient<ICategoriesRepository, CategoriesRepository>();
 builder.Services.AddTransient<ICasherRepository, CasherRepository>();
+
+
 
 builder.Services.AddIdentity<users, IdentityRole>()
     .AddEntityFrameworkStores<db_context>();

@@ -1,0 +1,27 @@
+@model IEnumerable<Supermarket_Managment_System.Models.bills>
+
+<table>
+    <tr>
+        <th>Bill ID</th>
+        <th>User Name</th>
+        <th>Payment Method</th>
+        <th>Total Price</th>
+        <th>Actions</th>
+    </tr>
+    @{
+        int billId = 1; // Declare the billId variable before the loop
+    }
+    @foreach (var bill in Model)
+    {
+        <tr>
+            <td>@(billId++)</td>
+            <td>@bill.User.UserName</td>
+            <td>@bill.Payment.MethodName</td>
+            <td>@bill.TotalPrice</td>
+            <td>
+                <a href="@Url.Action("Delete", "Casher", new { id = bill.Id })">Delete</a>
+                <a href="@Url.Action("BillItems", "Casher", new { id = bill.Id })">Items</a>
+            </td>
+        </tr>
+    }
+</table>

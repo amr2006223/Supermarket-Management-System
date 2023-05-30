@@ -19,10 +19,23 @@
     </div>
 
     <div class="form-group">
+        <label>Categories:</label><br />
+        @foreach (var category in ViewBag.Categories)
+        {
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="selectedCategories" value="@category.Id" />
+                    @category.Name
+                </label>
+            </div>
+        }
+    </div>
+
+    <div class="form-group">
         <input type="submit" value="Create" class="btn btn-primary" />
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index") <!-- Replace "Index" with your desired action -->
+    @Html.ActionLink("Back to List", "Index")
 </div>

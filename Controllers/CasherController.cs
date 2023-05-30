@@ -26,7 +26,7 @@ namespace Supermarket_Managment_System.Controllers
             List<ProductsToBillVM> productsToBillVM = _casherService.GetProductsWithCategories().ToList();
             IEnumerable<categories> categories = _casherService.GetAllCategories();
             bills bill = new bills();
-            bill.UserId = "f2f3f1f3-f243-44d0-a2df-18ef6f558925";
+            bill.UserId = "3bbf8a06-110b-4ad1-b4b5-68f51ffba351";
             bill.PaymentMethodId = _casherService.GetDefaultPaymentMethodId();
             bill.TotalPrice = 0;
             _casherService.CreateBill(bill);
@@ -60,5 +60,60 @@ namespace Supermarket_Managment_System.Controllers
             var result = _casherService.EditProductQuantity(product_id, bill_id, quantity);
             return Json(result);
         }
+
+
+
+        //gets the bills list /Casher/BillsList
+        public IActionResult BillsList()
+        {
+            var billsList = _casherService.GetBillsList(); // Call the method to get the bills list
+            return View(billsList);
+        }
+
+        //delete bills
+        public IActionResult Delete(Guid id)
+        {
+            try
+            {
+                _casherService.DeleteBill(id);
+                return RedirectToAction("BillsList");
+            }
+            catch (Exception.NotFoundException)
+            {
+                return NotFound();
+            }
+        }
+
+        public IActionResult BillItems(Guid id)
+        {
+            var billItems = _casherService.GetBillItems(id);
+            return View(billItems);
+        }
+
+        [HttpPost]
+        public IActionResult UpdateQuantity(Guid billItemId, int quantity)
+        {
+            bool success = _casherService.UpdateQuantity(billItemId, quantity);
+            if (!success)
+            {
+                return NotFound();
+            }
+
+            // Redirect back to the BillItems view
+            return RedirectToAction("BillItems", new { id = billItemId });
+        }
+
+        public IActionResult DeleteItem(Guid id)
+        {
+            bool success = _casherService.DeleteItem(id);
+            if (!success)
+            {
+                return NotFound();
+            }
+
+            // Redirect back to the BillItems view
+            return RedirectToAction("BillItems", new { id });
+        }
+
     }
 }

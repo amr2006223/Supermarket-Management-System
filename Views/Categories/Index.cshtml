@@ -1,0 +1,21 @@
+@model IEnumerable<Supermarket_Managment_System.Models.categories>
+
+<h2>Categories</h2>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+    </tr>
+    @foreach (var category in Model)
+    {
+        <tr>
+            <td>@category.Id</td>
+            <td>@category.Name</td>
+        </tr>
+    }
+</table>
+
+<div>
+    <a href="@Url.Action("Create", "categories")" class="btn btn-primary">Create Category</a>
+</div>

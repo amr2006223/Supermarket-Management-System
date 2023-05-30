@@ -163,5 +163,33 @@ namespace Supermarket_Managment_System.Services.CasherService
         {
             return _casherRepository.GetAllCategories();
         }
+
+        public IEnumerable<bills> GetBillsList()
+        {
+            return _casherRepository.GetBillsList();
+        }
+
+        public void DeleteBill(Guid id)
+        {
+            var bill = _casherRepository.GetBillById(id);
+            if (bill == null)
+            {
+                throw new Exception.NotFoundException("Bill not found");
+            }
+
+            _casherRepository.DeleteBill(bill);
+        }
+        public IEnumerable<bill_items_details> GetBillItems(Guid billId)
+        {
+            return _casherRepository.GetBillItems(billId);
+        }
+        public bool UpdateQuantity(Guid billItemId, int quantity)
+        {
+            return _casherRepository.UpdateQuantity(billItemId, quantity);
+        }
+        public bool DeleteItem(Guid id)
+        {
+            return _casherRepository.DeleteItem(id);
+        }
     }
 }
