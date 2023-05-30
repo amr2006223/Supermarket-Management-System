@@ -7,18 +7,21 @@ using Supermarket_Managment_System.Services.CasherService;
 using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
+using Microsoft.AspNetCore.Identity;
 
 namespace Supermarket_Managment_System.Controllers
 {
     public class CasherController : Controller
     {
+
         private readonly db_context _db;
         private ICasherServices _casherServices;
-
-        public CasherController(db_context db, ICasherServices casherServices)
+        private readonly UserManager<users> _UserManager;
+        public CasherController(db_context db, ICasherServices casherServices, UserManager<users> UserManager)
         {
             _db = db;
             _casherServices = casherServices;
+            _UserManager = UserManager;
 
             //products_categories produc_categorie = new products_categories();
             //produc_categorie.ProductId = new Guid("3a553de8-1169-4ec7-98dc-08db5d2d5e50");
@@ -26,10 +29,7 @@ namespace Supermarket_Managment_System.Controllers
             //_db.product_catoegories.Add(produc_categorie);
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
+      
 
         public IActionResult CreateBill()
         {
@@ -180,6 +180,74 @@ namespace Supermarket_Managment_System.Controllers
             {
                 return Json("Product not found in the bill.");
             }
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            var allmanagers = await _casherServices.Index();
+            return View(allmanagers);
+        }
+
+        // GET: casher/Create
+        public IActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Create(RegisterVM user)
+        {
+            var createuser = await _casherServices.Create(user);
+            return RedirectToAction("Index", "Casher");
+
+        }
+        // GET: casher/Delete/5
+        public async Task<IActionResult> Delete(string id)
+        {
+            if (id == null || _db.user == null)
+            {
+                return NotFound();
+            }
+
+            var user = await _UserManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return View(user);
+        }
+        // POST: cahser/Delete/5
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> Delete(users u)
+        {
+            var user = await _casherServices.Delete(u);
+            return RedirectToAction("Index", "Casher");
+        }
+        // GET: casher/Edit/5
+        
+        public async Task<IActionResult> Edit(string Id)
+        {
+            if (Id == null || _db.user == null)
+            {
+                return NotFound();
+            }
+
+            var user = await _UserManager.FindByIdAsync(Id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return View(user);
+        }
+        // Post: casher/Edit/5
+        [HttpPost]
+        public async Task<IActionResult> Edit(users u)
+        {
+           
+                var user =await _casherServices.Update(u);
+                return RedirectToAction("Index","Casher");
+            
         }
     }
 }
