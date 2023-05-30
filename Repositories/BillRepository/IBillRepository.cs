@@ -1,6 +1,6 @@
 ﻿using Supermarket_Managment_System.Models;
 
-namespace Supermarket_Managment_System.Repositories
+namespace Supermarket_Managment_System.Repositories.BillRepository
 {
     public interface IBillRepository
     {

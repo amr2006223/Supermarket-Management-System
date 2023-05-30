@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Supermarket_Managment_System.Repositories
+namespace Supermarket_Managment_System.Repositories.CasherRepository
 {
     public interface ICasherRepository
     {

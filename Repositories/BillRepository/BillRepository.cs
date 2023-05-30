@@ -3,7 +3,7 @@ using Supermarket_Managment_System.Data;
 using Supermarket_Managment_System.Models;
 using Supermarket_Managment_System.ViewModels;
 
-namespace Supermarket_Managment_System.Repositories
+namespace Supermarket_Managment_System.Repositories.BillRepository
 {
     public class BillRepository : IBillRepository
     {
@@ -22,10 +22,11 @@ namespace Supermarket_Managment_System.Repositories
         {
             try
             {
-            _context.bill.Add(bill);
-            _context.SaveChanges();
+                _context.bill.Add(bill);
+                _context.SaveChanges();
             }
-            catch(Exception ex) {
+            catch (Exception ex)
+            {
                 return null;
             }
             return bill;
@@ -40,7 +41,8 @@ namespace Supermarket_Managment_System.Repositories
                 _context.bill.Remove(bill);
 
                 return true;
-            }catch(Exception e)
+            }
+            catch (Exception e)
             {
                 return false;
             }
@@ -66,15 +68,16 @@ namespace Supermarket_Managment_System.Repositories
             throw new NotImplementedException();
         }
 
-       
+
         public bool RemoveProductFromBill(bill_items_details billItem)
         {
             try
             {
-            _context.bill_items_details.Remove(billItem);
-                
+                _context.bill_items_details.Remove(billItem);
+
                 return true;
-            }catch(Exception e)
+            }
+            catch (Exception e)
             {
                 return false;
             }
