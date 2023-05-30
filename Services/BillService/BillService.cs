@@ -4,7 +4,7 @@ using Supermarket_Managment_System.Repositories.BillRepository;
 
 namespace Supermarket_Managment_System.Services.BillService
 {
-    public class BillService
+    public class BillService : IBillService
     {
         private readonly BillRepository _billRepository;
         private readonly ProductsRepository _productsRepository;
@@ -137,11 +137,12 @@ namespace Supermarket_Managment_System.Services.BillService
             {
                 throw new Exception.NotFoundException("Bill not found");
             }
-            else {
-                _billRepository.deleteBill(id); 
+            else
+            {
+                _billRepository.deleteBill(id);
 
             }
-            
+
         }
         public IEnumerable<bill_items_details> GetBillItems(Guid billId)
         {

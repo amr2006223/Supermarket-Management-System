@@ -9,10 +9,13 @@ using Supermarket_Managment_System.Services;
 using Supermarket_Managment_System.Services.AuthService;
 using Supermarket_Managment_System.Services.UserService;
 using Supermarket_Managment_System.Services.CasherService;
+using Supermarket_Managment_System.Services.BillService;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Supermarket_Managment_System.Repositories;
 using Supermarket_Managment_System.Repositories.BillRepository;
+using Supermarket_Managment_System.Services.OfferService;
+using Supermarket_Managment_System.Repositories.OfferRepository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,11 +31,14 @@ builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<ICasherService, CasherService>();
 builder.Services.AddTransient<IProductsService, ProductsService>();
 builder.Services.AddTransient<ICategoriesService, CategoriesService>();
+//builder.Services.AddTransient<IBillService, BillService>();
+builder.Services.AddTransient<IOfferService, OfferService>();
 
 builder.Services.AddTransient<IProductsRepository, ProductsRepository>();
 builder.Services.AddTransient<ICategoriesRepository, CategoriesRepository>();
 builder.Services.AddTransient<ICasherRepository, CasherRepository>();
 builder.Services.AddTransient<IBillRepository, BillRepository>();
+builder.Services.AddTransient<IOfferRepository, OfferRepository>();
 
 
 
