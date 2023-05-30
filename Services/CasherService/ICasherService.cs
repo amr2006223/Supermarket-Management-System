@@ -13,5 +13,10 @@ namespace Supermarket_Managment_System.Services.CasherService
         string DeleteProductFromBill(Guid productId, Guid billId);
         string EditProductQuantity(Guid productId, Guid billId, int quantity);
         IEnumerable<categories> GetAllCategories();
+        IEnumerable<bills> GetBillsList();
+        void DeleteBill(Guid id);
+        IEnumerable<bill_items_details> GetBillItems(Guid billId);
+        bool UpdateQuantity(Guid billItemId, int quantity);
+        bool DeleteItem(Guid id);
     }
 }

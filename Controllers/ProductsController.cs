@@ -3,118 +3,136 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Supermarket_Managment_System.Data;
+using Supermarket_Managment_System.Services;
+
 using Supermarket_Managment_System.Models;
 
-// Update the namespace and class name as per your project's conventions
 namespace Supermarket_Managment_System.Controllers
 {
     public class ProductController : Controller
     {
-        private readonly db_context _dbContext; // Replace YourDbContext with the actual name of your database context class
+        private readonly IProductsService _productsService;
+        private readonly ICategoriesService _categoriesService;
 
-        public ProductController(db_context dbContext) // Replace YourDbContext with the actual name of your database context class
+
+        public ProductController(IProductsService productsService, ICategoriesService categoriesService)
         {
-            _dbContext = dbContext;
+            _productsService = productsService;
+            _categoriesService = categoriesService;
         }
 
         //view list of products
         public IActionResult Index()
         {
-            IEnumerable<products> objType = _dbContext.product; // Assign the retrieved data to a variable
-
-            return View(objType);
+            IEnumerable<products> products = _productsService.GetProducts();
+            return View(products);
         }
 
         // GET: /Product/Create
         public IActionResult Create()
         {
+            // Retrieve categories from your repository or service
+            var categories = _categoriesService.GetCategories();
+
+            // Set ViewBag.Categories to the retrieved categories
+            ViewBag.Categories = categories;
+
             return View();
         }
+
 
         // POST: /Product/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(products product) // Replace 'products' with the actual name of your model class
+        public async Task<IActionResult> Create(products product)
         {
             if (ModelState.IsValid)
             {
-                product.Id = Guid.NewGuid();
-
-                _dbContext.product.Add(product); // Replace 'products' with the actual name of your DbSet property
-
-                await _dbContext.SaveChangesAsync();
-
-                return RedirectToAction("Index", "Home"); // Replace "Index" and "Home" with your desired action and controller
+                bool created = await _productsService.CreateProduct(product);
+                if (created)
+                {
+                    return RedirectToAction("Index");
+                }
             }
 
             return View(product);
         }
 
-        public IActionResult Edit(Guid? Id)
+        public async Task<IActionResult> Edit(Guid? id)
+    {
+        if (id == null)
         {
-            if (Id == null)
-            {
-                return NotFound();
-            }
-
-            var productFromDb = _dbContext.product.Find(Id);
-
-            if (productFromDb == null)
-            {
-                return NotFound();
-            }
-
-            return View(productFromDb);
+            return NotFound();
         }
 
+        var productFromDb = await _productsService.GetProductById(id.Value);
+
+        if (productFromDb == null)
+        {
+            return NotFound();
+        }
+
+        return View(productFromDb);
+    }
+
+
+         [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Edit(products product)
+    {
+        if (ModelState.IsValid)
+        {
+            bool updated = await _productsService.UpdateProduct(product);
+            if (updated)
+            {
+                TempData["success"] = "Product Updated Successfully";
+                return RedirectToAction("Index");
+            }
+            // Handle update failure if needed
+        }
+
+        return View(product);
+    }
+
+
+         public async Task<IActionResult> Delete(Guid? id)
+    {
+        if (id == null)
+        {
+            return NotFound();
+        }
+
+        var productFromDb = await _productsService.GetProductById(id.Value);
+
+        if (productFromDb == null)
+        {
+            return NotFound();
+        }
+
+        return View(productFromDb);
+    }
 
         [HttpPost]
-[ValidateAntiForgeryToken]
-public IActionResult Edit(products obj)
-{
-    _dbContext.Attach(obj);
-    _dbContext.Entry(obj).State = EntityState.Modified;
-    _dbContext.SaveChanges();
-    TempData["success"] = "Product Updated Successfully";
-    return RedirectToAction("Index");
-}
-
-
-          public IActionResult Delete(Guid? Id)
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> DeleteProduct(Guid? id)
+    {
+        if (id == null)
         {
-            if (Id == null)
-            {
-                return NotFound();
-            }
-            var AccountFromDb = _dbContext.product.Find(Id);
-
-            if (AccountFromDb == null)
-            {
-                return NotFound();
-            }
-            return View(AccountFromDb);
-
+            return NotFound();
         }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult DeleteProduct(Guid? Id)
+
+        bool deleted = await _productsService.DeleteProduct(id);
+        if (deleted)
         {
-            if (Id == null)
-            {
-                return NotFound();
-            }
-
-            var obj = _dbContext.product.Find(Id);
-            if (obj == null)
-            {
-                return NotFound();
-            }
-
-            _dbContext.product.Remove(obj);
-            _dbContext.SaveChanges();
-            TempData["success"] = "Account Deleted Successfully";
-            return RedirectToAction("Index");
+            TempData["success"] = "Product Deleted Successfully";
         }
+        else
+        {
+            // Handle delete failure if needed
+        }
+
+        return RedirectToAction("Index");
+    }
 
     }
 }

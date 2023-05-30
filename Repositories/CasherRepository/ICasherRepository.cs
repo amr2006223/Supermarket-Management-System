@@ -2,7 +2,11 @@
 using System;
 using System.Collections.Generic;
 
-namespace Supermarket_Managment_System.Repositories.CasherRepository
+
+namespace Supermarket_Managment_System.Repositories
+
+
+
 {
     public interface ICasherRepository
     {
@@ -19,5 +23,14 @@ namespace Supermarket_Managment_System.Repositories.CasherRepository
         void RemoveProductFromBill(bill_items_details billItem);
         IEnumerable<bill_items_details> GetProductsInBill(Guid billId);
         void SaveChanges();
+        IEnumerable<bills> GetBillsList();
+        bills GetBillById(Guid id);
+        void DeleteBill(bills bill);
+        IEnumerable<bill_items_details> GetBillItems(Guid billId);
+        bool UpdateQuantity(Guid billItemId, int quantity);
+        bool DeleteItem(Guid id);
     }
 }
+
+
+
