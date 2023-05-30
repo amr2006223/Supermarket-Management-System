@@ -4,33 +4,38 @@ using Supermarket_Managment_System.Data;
 using Supermarket_Managment_System.Models;
 using Supermarket_Managment_System.ViewModels;
 using Supermarket_Managment_System.Services.CasherService;
+using Microsoft.AspNetCore.Identity;
 
 namespace Supermarket_Managment_System.Controllers
 {
     public class CasherController : Controller
     {
         private ICasherService _casherService;
+        private readonly UserManager<users> _userManager;
 
-        public CasherController(db_context db, ICasherService casherServices)
+        public CasherController (ICasherService casherServices,UserManager<users> userManager)
         {
             _casherService = casherServices;
+            _userManager = userManager;
         }
 
         public IActionResult Index()
         {
             return View();
         }
+        [HttpGet("/Casher/CreateBill")]
 
-        public IActionResult CreateBill()
+        public async Task<IActionResult> CreateBill()
         {
             List<ProductsToBillVM> productsToBillVM = _casherService.GetProductsWithCategories().ToList();
             IEnumerable<categories> categories = _casherService.GetAllCategories();
             bills bill = new bills();
-            bill.UserId = "f2f3f1f3-f243-44d0-a2df-18ef6f558925";
+            users LoggedInUser = await _userManager.GetUserAsync(User);
+            bill.UserId = LoggedInUser.Id;
             bill.PaymentMethodId = _casherService.GetDefaultPaymentMethodId();
             bill.TotalPrice = 0;
             _casherService.CreateBill(bill);
-            return View("CreateBill", (productsToBillVM, bill, categories));
+            return View((productsToBillVM, bill, categories));
         }
 
         [HttpPost]

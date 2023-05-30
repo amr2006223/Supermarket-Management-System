@@ -25,26 +25,12 @@ namespace Supermarket_Managment_System.Repositories
 
         public products_categories GetProductCategory(Guid productId)
         {
-            return _db.product_catoegories
-                .Include(pc => pc.Category)
-                .FirstOrDefault(pc => pc.ProductId == productId);
+            return _db.product_catoegories.Include(pc => pc.Category).FirstOrDefault(pc => pc.ProductId == productId);
         }
 
         public Guid GetDefaultPaymentMethodId()
         {
             return _db.payment.FirstOrDefault().Id;
-        }
-
-        public void CreateBill(bills bill)
-        {
-            _db.bill.Add(bill);
-            _db.SaveChanges();
-        }
-
-        public bill_items_details GetBillItem(Guid productId, Guid billId)
-        {
-            return _db.bill_items_details
-                .FirstOrDefault(b => b.ProductId == productId && b.BillId == billId);
         }
 
         public bills GetBill(Guid billId)
