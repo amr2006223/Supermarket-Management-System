@@ -1,68 +1,102 @@
 @model List<Supermarket_Managment_System.Models.bill_items_details>
 
-<h2>Bill Items</h2>
+@{
+    ViewData["Title"] = "Bill Items";
+}
+@{
+    Layout = "~/Views/Shared/_LayoutCasher.cshtml";
+}
 
-<table>
-    <tr>
-        <th>Product Name</th>
-        <th>Price</th>
-        <th>Quantity</th>
-        <th>Actions</th>
-    </tr>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>@item.Product.Name</td>
-            <td>@item.Product.Price</td>
-            <td>
-                <form id="updateForm_@item.Id">
-                    <input type="hidden" name="billItemId" value="@item.Id" />
-                    <input type="number" name="quantity" value="@item.Quantity" />
-                    <button type="button" onclick="updateQuantity('@item.Id')">Update</button>
-                </form>
-            </td>
-            <td>
-                <button type="button" onclick="deleteItem('@item.Id')">Remove</button>
-            </td>
-        </tr>
-    }
-</table>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        .table-container {
+            max-width: 800px;
+            margin: 0 auto;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
 
-<script>
-    function updateQuantity(billItemId) {
-        var quantity = $('#updateForm_' + billItemId + ' input[name="quantity"]').val();
+    <div class="table-container">
+        <h2>Bill Items</h2>
 
-        $.ajax({
-            type: 'POST',
-            url: '@Url.Action("UpdateQuantity", "Casher")',
-            data: {
-                billItemId: billItemId,
-                quantity: quantity
-            },
-            success: function () {
-                location.reload(); // Refresh the page after successful update
-            },
-            error: function () {
-                alert('Failed to update quantity.');
-            }
-        });
-    }
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Product.Name</td>
+                        <td>@item.Product.Price</td>
+                        <td>
+                            <form id="updateForm_@item.Id">
+                                <input type="hidden" name="billItemId" value="@item.Id" />
+                                <input type="number" name="quantity" value="@item.Quantity" />
+                                <button type="button" onclick="updateQuantity('@item.Id')" class="btn btn-primary">Update</button>
+                            </form>
+                        </td>
+                        <td>
+                            <button type="button" onclick="deleteItem('@item.Id')" class="btn btn-danger">Remove</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 
-    function deleteItem(billItemId) {
-        if (confirm('Are you sure you want to remove this item?')) {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function updateQuantity(billItemId) {
+            var quantity = $('#updateForm_' + billItemId + ' input[name="quantity"]').val();
+
             $.ajax({
                 type: 'POST',
-                url: '@Url.Action("DeleteItem", "Casher")',
+                url: '@Url.Action("UpdateQuantity", "Casher")',
                 data: {
-                    id: billItemId
+                    billItemId: billItemId,
+                    quantity: quantity
                 },
                 success: function () {
-                    location.reload(); // Refresh the page after successful deletion
+                    alert('Quantity updated successfully.');
+                    location.reload(); // Refresh the page after successful update
                 },
                 error: function () {
-                    alert('Failed to delete item.');
+                    alert('Failed to update quantity.');
                 }
             });
         }
-    }
-</script>
+
+        function deleteItem(billItemId) {
+            if (confirm('Are you sure you want to remove this item?')) {
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("DeleteItem", "Casher")',
+                    data: {
+                        id: billItemId
+                    },
+                    success: function () {
+                        alert('Item removed successfully.');
+                        location.reload(); // Refresh the page after successful deletion
+                    },
+                    error: function () {
+                        alert('Failed to delete item.');
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>
