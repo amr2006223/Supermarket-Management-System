@@ -5,18 +5,25 @@ using Supermarket_Managment_System.Models;
 using Supermarket_Managment_System.ViewModels;
 using Supermarket_Managment_System.Services.CasherService;
 using Microsoft.AspNetCore.Identity;
+using Supermarket_Managment_System.Services.BillService;
+using Supermarket_Managment_System.Repositories;
+using Supermarket_Managment_System.Services;
 
 namespace Supermarket_Managment_System.Controllers
 {
     public class CasherController : Controller
     {
         private ICasherService _casherService;
+        private IProductsService _productService;
+        private ICategoriesService _categoryService;
         private readonly UserManager<users> _userManager;
 
-        public CasherController (ICasherService casherServices,UserManager<users> userManager)
+        public CasherController (ICasherService casherServices, UserManager<users> userManager, IProductsService productService, ICategoriesService categoryService)
         {
             _casherService = casherServices;
             _userManager = userManager;
+            _productService = productService;
+            _categoryService = categoryService;
         }
 
         public IActionResult Index()
@@ -28,7 +35,7 @@ namespace Supermarket_Managment_System.Controllers
         public async Task<IActionResult> CreateBill()
         {
             List<ProductsToBillVM> productsToBillVM = _casherService.GetProductsWithCategories().ToList();
-            IEnumerable<categories> categories = _casherService.GetAllCategories();
+            IEnumerable<categories> categories = _categoryService.GetCategories();
             bills bill = new bills();
             users LoggedInUser = await _userManager.GetUserAsync(User);
             bill.UserId = LoggedInUser.Id;

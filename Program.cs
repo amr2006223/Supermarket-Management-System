@@ -11,7 +11,8 @@ using Supermarket_Managment_System.Services.UserService;
 using Supermarket_Managment_System.Services.CasherService;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
-using Supermarket_Managment_System.Repositories.CasherRepository;
+using Supermarket_Managment_System.Repositories;
+using Supermarket_Managment_System.Repositories.BillRepository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,6 +32,7 @@ builder.Services.AddTransient<ICategoriesService, CategoriesService>();
 builder.Services.AddTransient<IProductsRepository, ProductsRepository>();
 builder.Services.AddTransient<ICategoriesRepository, CategoriesRepository>();
 builder.Services.AddTransient<ICasherRepository, CasherRepository>();
+builder.Services.AddTransient<IBillRepository, BillRepository>();
 
 
 
